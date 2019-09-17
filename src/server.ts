@@ -517,7 +517,8 @@ export class Server extends EventEmitter {
       }
 
       if (style === 'rpc') {
-        body = this.wsdl.objectToRpcXML(outputName, result, '', this.wsdl.definitions.$targetNamespace);
+        // force to remove namespace from root element on response 
+        body = this.wsdl.objectToRpcXML(outputName, result, '', this.wsdl.definitions.$targetNamespace, true);
       } else {
         const element = this.wsdl.definitions.services[serviceName].ports[portName].binding.methods[methodName].output;
         body = this.wsdl.objectToDocumentXML(outputName, result, element.targetNSAlias, element.targetNamespace);
