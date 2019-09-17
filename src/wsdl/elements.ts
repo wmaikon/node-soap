@@ -808,7 +808,9 @@ export class TypesElement extends Element {
     if (!this.schemas.hasOwnProperty(targetNamespace)) {
       this.schemas[targetNamespace] = child;
     } else {
-      console.error('Target-Namespace "' + targetNamespace + '" already in use by another Schema!');
+      if (targetNamespace !== undefined) {
+        console.error('Target-Namespace "' + targetNamespace + '" already in use by another Schema!');
+      }
     }
   }
 }
